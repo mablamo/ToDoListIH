@@ -46,13 +46,11 @@ export default {
     },
     handleSignIn() {
       this.signIn(this.signInEmail, this.signInPassword);
-      console.log(this.user);
     },
   },
   watch: {
     user() {
       if (this.user) {
-        console.log(this.user);
         this.$router.push({ path: '/' });
       }
     },

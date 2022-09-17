@@ -22,7 +22,6 @@ export default defineStore('tasks', {
           is_complete: isComplete,
         }]);
       this.tasks.unshift(createdTask[0]);
-      console.log(createdTask[0]);
     },
   },
 });

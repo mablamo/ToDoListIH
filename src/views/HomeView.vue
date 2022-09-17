@@ -35,10 +35,6 @@ export default {
     handleAddTask() {
       this.addTask(this.title, true, this.user.id);
     },
-    prueba() {
-      this.fetchTasks();
-      console.log(this.tasks);
-    },
   },
   created() {
     this.fetchTasks();
