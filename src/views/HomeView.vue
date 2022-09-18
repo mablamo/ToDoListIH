@@ -5,8 +5,28 @@
     <h2>Crear componente</h2>
     <label for="title"><input type="text" id="title" v-model="title">Tarea</label>
     <button @click="handleAddTask"> Añadir</button>
-    <h3 v-for="(task) in tasks" :key="task.id">{{ task.title }}</h3>
-    <button @click="prueba">prueba</button>
+    <table>
+      <tr>
+        <th>Tarea</th>
+        <th>Fecha</th>
+        <th>Completada</th>
+        <th></th>
+        <th>Modificar</th>
+        <th>Eliminar</th>
+        <th>Completada?</th>
+      </tr>
+      <tr v-for="(task, index) in tasks" :key="task.id">
+        <th>{{ task.title }} <input type="text" v-model="editTitle" v-show=true></th>
+        <th>{{ task.inserted_at.substr(0, 10) }}</th>
+        <th><button @click="handleCompleteTask(task, index )" v-show="task.is_complete">
+        Completada!</button></th>
+        <th><button @click="handleCompleteTask(task, index )" v-show="!task.is_complete">
+        No completada</button></th>
+        <th><button @click="handleEditTask(task, index )">Editar</button></th>
+        <th><button @click="handleDeleteTask(task, index )">Eliminar</button></th>
+        <th>{{ task.is_complete }}</th>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -28,12 +48,22 @@ export default {
   },
   methods: {
     ...mapActions(userStore, ['signOut']),
-    ...mapActions(tasksStore, ['fetchTasks', 'addTask']),
+    ...mapActions(tasksStore, ['fetchTasks', 'addTask', 'editTask', 'deleteTask']),
     handleSignOut() {
       this.signOut();
     },
     handleAddTask() {
-      this.addTask(this.title, true, this.user.id);
+      this.addTask(this.title, this.user.id);
+    },
+    handleEditTask(task, index) {
+      this.editTask(task.id, this.editTitle, task.is_complete, this.user.id, index);
+      this.editTitle = '';
+    },
+    handleDeleteTask(task, index) {
+      this.deleteTask(task.id, index);
+    },
+    handleCompleteTask(task, index) {
+      this.editTask(task.id, task.title, !task.is_complete, this.user.id, index);
     },
   },
   created() {
