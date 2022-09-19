@@ -5,28 +5,7 @@
     <h2>Crear componente</h2>
     <label for="title"><input type="text" id="title" v-model="title">Tarea</label>
     <button @click="handleAddTask"> Añadir</button>
-    <table>
-      <tr>
-        <th>Tarea</th>
-        <th>Fecha</th>
-        <th>Completada</th>
-        <th></th>
-        <th>Modificar</th>
-        <th>Eliminar</th>
-        <th>Completada?</th>
-      </tr>
-      <tr v-for="(task, index) in tasks" :key="task.id">
-        <th>{{ task.title }} <input type="text" v-model="editTitle" v-show=true></th>
-        <th>{{ task.inserted_at.substr(0, 10) }}</th>
-        <th><button @click="handleCompleteTask(task, index )" v-show="task.is_complete">
-        Completada!</button></th>
-        <th><button @click="handleCompleteTask(task, index )" v-show="!task.is_complete">
-        No completada</button></th>
-        <th><button @click="handleEditTask(task, index )">Editar</button></th>
-        <th><button @click="handleDeleteTask(task, index )">Eliminar</button></th>
-        <th>{{ task.is_complete }}</th>
-      </tr>
-    </table>
+    <tasks-component></tasks-component>
   </div>
 </template>
 
@@ -34,6 +13,7 @@
 import { mapState, mapActions } from 'pinia';
 import userStore from '@/store/user';
 import tasksStore from '@/store/task';
+import TasksComponent from '../components/TasksComponent.vue';
 
 export default {
   name: 'HomeView',
@@ -41,6 +21,9 @@ export default {
     return {
       title: '',
     };
+  },
+  components: {
+    TasksComponent,
   },
   computed: {
     ...mapState(userStore, ['user']),

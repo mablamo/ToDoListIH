@@ -10,7 +10,7 @@
       aria-label="Basic radio toggle button group"
     >
       <label class="btn btn-outline-primary" for="btnradio1">
-        I have an account
+        I'm in (I think so)
         <input
           type="radio"
           class="btn-check"
@@ -20,7 +20,7 @@
           @click="logedUser"
       /></label>
       <label class="btn btn-outline-primary" for="btnradio2"
-        >Create new account
+        >Who are you?
         <input type="radio" class="btn-check" name="btnradio" id="btnradio2" @click="unlogedUser"/>
       </label>
     </div>
