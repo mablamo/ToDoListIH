@@ -3,26 +3,26 @@
     <form>
       <div class="row mb-3">
         <label for="signInEmail" class="col-sm-2 col-form-label"
-          >
+          >Email
           <div class="col-sm-10">
             <input
               type="email"
               class="form-control"
               id="signInEmail"
               v-model="signInEmail"
-            />Email</div
+            /></div
         ></label>
       </div>
       <div class="row mb-3">
         <label for="password" class="col-sm-2 col-form-label"
-          >
+          >Password
           <div class="col-sm-10">
             <input
               type="password"
               id="signInPassword"
               class="form-control"
               v-model="signInPassword"
-            />Password</div
+            /></div
         ></label>
       </div>
       <button class="btn btn-primary" @click="handleSignIn" type="button">

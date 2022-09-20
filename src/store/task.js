@@ -10,7 +10,7 @@ export default defineStore('tasks', {
       const { data: tasks } = await supabase
         .from('tasks')
         .select('*')
-        .order('id', { ascending: false });
+        .order('id', { ascending: true });
       this.tasks = tasks;
     },
     async addTask(title, userId) {
@@ -21,7 +21,7 @@ export default defineStore('tasks', {
           user_id: userId,
           title,
         }]);
-      this.tasks.unshift(createdTask[0]);
+      this.tasks.push(createdTask[0]);
     },
     async editTask(taskId, title, isComplete, userId, taskIndex) {
       const { data: editedTask } = await supabase

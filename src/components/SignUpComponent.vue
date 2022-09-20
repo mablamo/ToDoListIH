@@ -3,38 +3,38 @@
     <form>
       <div class="row mb-3">
         <label for="email" class="col-sm-2 col-form-label"
-          >
+          >Enter your email
           <div class="col-sm-10">
             <input
               type="text"
               class="form-control"
               id="email"
               v-model="email"
-            />Email</div
+            /></div
         ></label>
       </div>
       <div class="row mb-3">
         <label for="password" class="col-sm-2 col-form-label"
-          >
+          >Set your password
           <div class="col-sm-10">
             <input
               type="email"
               id="password"
               class="form-control"
               v-model="password"
-            />Password</div
+            /></div
         ></label>
       </div>
       <div class="row mb-3">
         <label for="confirmPassword" class="col-sm-2 col-form-label"
-          >
+          >Confirm your password
           <div class="col-sm-10">
             <input
               type="password"
               id="confirmPassword"
               class="form-control"
               v-model="confirmPassword"
-            />Confirm Password</div
+            /></div
         ></label>
       </div>
       <button class="btn btn-primary" @click="handleSignUp" type="button">
