@@ -1,10 +1,13 @@
 <template>
 
-<edit-task-component :editedIndex="editedIndex" :editedTask="editedTask"></edit-task-component>
+<edit-task-component :editedIndex="editedIndex" :editedTask="editedTask"
+v-if="editController" @hideEdit="editController = false">
+</edit-task-component>
+
 <h2>Pending Tasks</h2>
 <ol class="list-group list-group-numbered">
   <li class="list-group-item d-flex justify-content-between align-items-start"
-  v-for="(task, index) in tasks" :key="task.id" v-show="!task.is_complete">
+  v-for="(task) in pendingTasks" :key="task.id">
     <div class="ms-2 me-auto">
       <div class="fw-bold">{{ task.title }}</div>
       {{ task.inserted_at.substr(0, 10) }}
@@ -15,11 +18,11 @@
     Opciones
   </a>
   <ul class="dropdown-menu">
-    <li><button class="dropdown-item" @click="openEditTask(task, index )">Modificar</button></li>
-    <li><button class="dropdown-item" @click="handleDeleteTask(task, index )">Eliminar</button></li>
+    <li><button class="dropdown-item" @click="openEditTask(task)">Modificar</button></li>
+    <li><button class="dropdown-item" @click="handleDeleteTask(task)">Eliminar</button></li>
   </ul>
 </div>
-    <button class="badge bg-primary rounded-pill" @click="handleCompleteTask(task, index)"
+    <button class="badge bg-primary rounded-pill" @click="handleCompleteTask(task)"
     :key="task.is_complete">
       {{ task.is_complete }}</button>
   </li>
@@ -27,7 +30,7 @@
 <h2>Completed Tasks</h2>
 <ol class="list-group list-group-numbered">
   <li class="list-group-item d-flex justify-content-between align-items-start"
-  v-for="(task, index) in tasks" :key="task.id" v-show="task.is_complete">
+  v-for="(task) in completedTasks" :key="task.id">
     <div class="ms-2 me-auto">
       <div class="fw-bold">{{ task.title }}</div>
       {{ task.inserted_at.substr(0, 10) }}
@@ -38,11 +41,11 @@
     Opciones
   </a>
   <ul class="dropdown-menu">
-    <li><button class="dropdown-item" @click="openEditTask(task, index )">Modificar</button></li>
-    <li><button class="dropdown-item" @click="handleDeleteTask(task, index )">Eliminar</button></li>
+    <li><button class="dropdown-item" @click="openEditTask(task)">Modificar</button></li>
+    <li><button class="dropdown-item" @click="handleDeleteTask(task)">Eliminar</button></li>
   </ul>
 </div>
-    <button class="badge bg-primary rounded-pill" @click="handleCompleteTask(task, index)"
+    <button class="badge bg-primary rounded-pill" @click="handleCompleteTask(task)"
     :key="task.is_complete">
       {{ task.is_complete }}</button>
   </li>
@@ -63,6 +66,7 @@ export default {
       title: '',
       editedTask: {},
       editedIndex: 0,
+      editController: false,
     };
   },
   components: {
@@ -71,6 +75,13 @@ export default {
   computed: {
     ...mapState(userStore, ['user']),
     ...mapState(tasksStore, ['tasks']),
+    pendingTasks() {
+      console.log(this.tasks.filter((elem) => !elem.is_completed));
+      return this.tasks.filter((elem) => !elem.is_completed);
+    },
+    completedTasks() {
+      return this.tasks.filter((elem) => elem.is_completed);
+    },
   },
   methods: {
     ...mapActions(tasksStore, ['editTask', 'deleteTask']),
@@ -88,6 +99,7 @@ export default {
       this.deleteTask(task.id, index);
     },
     openEditTask(task, index) {
+      this.editController = true;
       this.editedTask = task;
       this.editedIndex = index;
     },

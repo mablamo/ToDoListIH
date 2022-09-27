@@ -31,22 +31,12 @@ export default {
   },
   methods: {
     ...mapActions(userStore, ['signOut']),
-    ...mapActions(tasksStore, ['fetchTasks', 'addTask', 'editTask', 'deleteTask']),
+    ...mapActions(tasksStore, ['fetchTasks', 'addTask']),
     handleSignOut() {
       this.signOut();
     },
     handleAddTask() {
       this.addTask(this.title, this.user.id);
-    },
-    handleEditTask(task, index) {
-      this.editTask(task.id, this.editTitle, task.is_complete, this.user.id, index);
-      this.editTitle = '';
-    },
-    handleDeleteTask(task, index) {
-      this.deleteTask(task.id, index);
-    },
-    handleCompleteTask(task, index) {
-      this.editTask(task.id, task.title, !task.is_complete, this.user.id, index);
     },
   },
   created() {

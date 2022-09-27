@@ -3,7 +3,7 @@ import supabase from '../supabase/index';
 
 export default defineStore('tasks', {
   state: () => ({
-    tasks: null,
+    tasks: [],
   }),
   actions: {
     async fetchTasks() {
@@ -14,7 +14,6 @@ export default defineStore('tasks', {
       this.tasks = tasks;
     },
     async addTask(title, userId) {
-      console.log(title, userId);
       const { data: createdTask } = await supabase
         .from('tasks')
         .insert([{
@@ -23,7 +22,7 @@ export default defineStore('tasks', {
         }]);
       this.tasks.push(createdTask[0]);
     },
-    async editTask(taskId, title, isComplete, userId, taskIndex) {
+    async editTask(taskId, title, isComplete, userId) {
       const { data: editedTask } = await supabase
         .from('tasks')
         .update([{
@@ -32,15 +31,17 @@ export default defineStore('tasks', {
           is_complete: isComplete,
         }])
         .match({ id: taskId });
-      console.log(taskId);
+      const taskIndex = this.tasks.findIndex((item) => item.id === taskId);
       this.tasks[taskIndex].title = editedTask[0].title;
+      this.tasks.filter((elem) => elem.id === taskId)[0].title = editedTask[0].title;
       this.tasks[taskIndex].is_complete = isComplete;
     },
-    async deleteTask(taskId, taskIndex) {
+    async deleteTask(taskId) {
       const { data, error } = await supabase
         .from('tasks')
         .delete()
         .match({ id: taskId });
+      const taskIndex = this.tasks.findIndex((item) => item.id === taskId);
       this.tasks.splice(taskIndex, 1);
       console.log(data, error);
     },

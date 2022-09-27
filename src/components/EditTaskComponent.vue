@@ -2,12 +2,10 @@
 
 <h2>Edit task</h2>
 <div class="card">
-  <div class="card-body">
-    {{ editedTask.title }} Index: {{ editedIndex }}
-  </div>
   <label for="taskToEdit">
   <input id="taskToEdit" type="text" :placeholder="editedTask.title" v-model="editTitle">
-  <button @click="handleEditTask(editedTask, editedIndex )">Modificar</button>
+  <button @click="handleEditTask(editedTask, editedIndex)">Modificar</button>
+  <button @click="handleCancel()">Cancelar</button>
   </label>
 </div>
 
@@ -35,15 +33,20 @@ export default {
   },
   methods: {
     ...mapActions(tasksStore, ['editTask']),
-    handleEditTask(task, index) {
+    handleEditTask(task) {
       this.editTask(
         task.id,
         this.editTitle,
         task.is_complete,
         this.user.id,
-        index,
+        this.editedIndex,
       );
       this.editTitle = '';
+      this.$emit('hideEdit');
+    },
+    handleCancel() {
+      this.editTitle = '';
+      this.$emit('hideEdit');
     },
   },
 };
