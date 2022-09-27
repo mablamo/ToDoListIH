@@ -1,19 +1,6 @@
 <template>
-{{ miProp1 }}
-<!-- <table>
 
-    <tr v-for="(task, index) in tasks" :key="task.id">
-        <th>{{ task.title }} <input type="text" v-model="editTitle" v-show=true></th>
-        <th>{{ task.inserted_at.substr(0, 10) }}</th>
-        <th><button @click="handleCompleteTask(task, index )" v-show="task.is_complete">
-        Completada!</button></th>
-        <th><button @click="handleCompleteTask(task, index )" v-show="!task.is_complete">
-        No completada</button></th>
-        <th><button @click="handleEditTask(task, index )">Editar</button></th>
-        <th><button @click="handleDeleteTask(task, index )">Eliminar</button></th>
-        <th>{{ task.is_complete }}</th>
-      </tr>
-</table> -->
+<edit-task-component :editedIndex="editedIndex" :editedTask="editedTask"></edit-task-component>
 <h2>Pending Tasks</h2>
 <ol class="list-group list-group-numbered">
   <li class="list-group-item d-flex justify-content-between align-items-start"
@@ -28,7 +15,7 @@
     Opciones
   </a>
   <ul class="dropdown-menu">
-    <li><button class="dropdown-item" @click="handleEditTask(task, index )">Modificar</button></li>
+    <li><button class="dropdown-item" @click="openEditTask(task, index )">Modificar</button></li>
     <li><button class="dropdown-item" @click="handleDeleteTask(task, index )">Eliminar</button></li>
   </ul>
 </div>
@@ -51,7 +38,7 @@
     Opciones
   </a>
   <ul class="dropdown-menu">
-    <li><button class="dropdown-item" @click="handleEditTask(task, index )">Modificar</button></li>
+    <li><button class="dropdown-item" @click="openEditTask(task, index )">Modificar</button></li>
     <li><button class="dropdown-item" @click="handleDeleteTask(task, index )">Eliminar</button></li>
   </ul>
 </div>
@@ -67,17 +54,19 @@
 import { mapState, mapActions } from 'pinia';
 import userStore from '@/store/user';
 import tasksStore from '@/store/task';
+import EditTaskComponent from './EditTaskComponent.vue';
 
 export default {
   name: 'TasksComponent',
   data() {
     return {
       title: '',
+      editedTask: {},
+      editedIndex: 0,
     };
   },
-  props: {
-    miProp1: String,
-    miProp2: Object,
+  components: {
+    EditTaskComponent,
   },
   computed: {
     ...mapState(userStore, ['user']),
@@ -97,6 +86,10 @@ export default {
     },
     handleDeleteTask(task, index) {
       this.deleteTask(task.id, index);
+    },
+    openEditTask(task, index) {
+      this.editedTask = task;
+      this.editedIndex = index;
     },
     handleCompleteTask(task, index) {
       this.editTask(
