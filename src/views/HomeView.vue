@@ -1,11 +1,10 @@
 <template>
   <div class="home">
-    <h1>Home View</h1>
-    <button @click="handleSignOut">SignOut</button>
-    <h2>Crear componente</h2>
-    <label for="title"><input type="text" id="title" v-model="title">Tarea</label>
-    <button @click="handleAddTask"> Añadir</button>
-    <tasks-component></tasks-component>
+    <button v-if="!addController && !editController"
+    class="btn btn-primary" @click="openAddTask">Nueva Tarea</button>
+    <add-task-component v-if="addController" @hideAdd="addController = false"></add-task-component>
+    <tasks-component v-if="!addController" @hideAddButton="editController = !editController">
+    </tasks-component>
   </div>
 </template>
 
@@ -14,29 +13,32 @@ import { mapState, mapActions } from 'pinia';
 import userStore from '@/store/user';
 import tasksStore from '@/store/task';
 import TasksComponent from '../components/TasksComponent.vue';
+import AddTaskComponent from '../components/AddTaskComponent.vue';
 
 export default {
   name: 'HomeView',
   data() {
     return {
       title: '',
+      addController: false,
+      editController: false,
     };
   },
   components: {
     TasksComponent,
+    AddTaskComponent,
   },
   computed: {
     ...mapState(userStore, ['user']),
     ...mapState(tasksStore, ['tasks']),
   },
   methods: {
-    ...mapActions(userStore, ['signOut']),
     ...mapActions(tasksStore, ['fetchTasks', 'addTask']),
-    handleSignOut() {
-      this.signOut();
-    },
     handleAddTask() {
       this.addTask(this.title, this.user.id);
+    },
+    openAddTask() {
+      this.addController = true;
     },
   },
   created() {

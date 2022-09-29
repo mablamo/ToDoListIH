@@ -1,11 +1,14 @@
 <template>
 
-<h2>Edit task</h2>
+<h3>Modifica tu tarea:</h3>
 <div class="card">
-  <label for="taskToEdit">
+  <label for="taskToEdit">Tarea:
   <input id="taskToEdit" type="text" :placeholder="editedTask.title" v-model="editTitle">
-  <button @click="handleEditTask(editedTask, editedIndex)">Modificar</button>
-  <button @click="handleCancel()">Cancelar</button>
+  <div class="box">
+    <button class="btn btn-primary" @click="handleEditTask(editedTask, editedIndex)">
+    Modificar</button>
+  <button class="btn btn-primary cancel" @click="handleCancel()">Cancelar</button>
+  </div>
   </label>
 </div>
 

@@ -1,5 +1,7 @@
 <template>
-  <nav v-if="user"><router-link to="/">Home</router-link> |</nav>
+  <nav v-if="user">
+    <img class="nav-logo" src='./assets/logo.png' alt="Logo_Dori">
+    <button class="btn btn-primary" @click="handleSignOut">SignOut</button></nav>
   <router-view />
 </template>
 
@@ -13,7 +15,10 @@ export default {
     ...mapState(userStore, ['user']),
   },
   methods: {
-    ...mapActions(userStore, ['fetchUser']),
+    ...mapActions(userStore, ['fetchUser', 'signOut']),
+    handleSignOut() {
+      this.signOut();
+    },
   },
   async created() {
     try {
@@ -51,4 +56,35 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
+button.cancel {
+    background-color: rgb(175, 8, 8);
+    --bs-btn-hover-bg: #700f06;
+}
+
+button {
+  margin: 10px;
+}
+
+.card {
+  padding: 10px;
+}
+
+h3 {
+  margin: 15px;
+}
+
+.nav-logo {
+  width: 10%;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+body {
+  background-color: rgb(69, 193, 224);
+}
+
 </style>
