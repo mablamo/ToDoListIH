@@ -76,15 +76,18 @@ h3 {
 
 .nav-logo {
   width: 10%;
+  height: 10%;
 }
 
 nav {
   display: flex;
   justify-content: space-between;
+  margin: 0;
 }
 
 body {
   background-color: rgb(69, 193, 224);
+  padding: 0 15px;
 }
 
 </style>

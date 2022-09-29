@@ -10,7 +10,7 @@ v-if="editController" @hideEdit="editController = false">
   v-for="(task) in pendingTasks" :key="task.id">
     <div class="ms-2 me-auto">
       <div class="fw-bold">{{ task.title }}</div>
-      {{ task.inserted_at.substr(0, 10) }}
+      Creada:{{ task.inserted_at.substr(0, 10) }}
     </div>
     <button class="badge bg-primary rounded-pill" @click="handleCompleteTask(task)"
     :key="task.is_complete">
@@ -33,7 +33,7 @@ v-if="editController" @hideEdit="editController = false">
   v-for="(task) in completedTasks" :key="task.id">
     <div class="ms-2 me-auto">
       <div class="fw-bold">{{ task.title }}</div>
-      {{ task.inserted_at.substr(0, 10) }}
+      Creada:{{ task.inserted_at.substr(0, 10) }}
     </div>
     <button class="badge bg-primary rounded-pill" @click="handleCompleteTask(task)"
     :key="task.is_complete">
