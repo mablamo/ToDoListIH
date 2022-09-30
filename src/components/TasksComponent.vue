@@ -33,7 +33,8 @@ v-if="editController" @hideEdit="editController = false">
   v-for="(task) in completedTasks" :key="task.id">
     <div class="ms-2 me-auto">
       <div class="fw-bold">{{ task.title }}</div>
-      Creada:{{ task.inserted_at.substr(0, 10) }}
+      Creada:{{ task.inserted_at.substr(0, 10) }}<br>
+      Completada el {{ task.completed_on }}
     </div>
     <button class="badge bg-primary rounded-pill" @click="handleCompleteTask(task)"
     :key="task.is_complete">
@@ -95,13 +96,18 @@ export default {
       this.editedIndex = index;
       this.$emit('hideAddButton');
     },
-    handleCompleteTask(task, index) {
+    handleCompleteTask(task) {
+      const dd = Date().substring(8, 10);
+      const mm = Date().substring(4, 7);
+      const yyyy = Date().substring(11, 15);
+      const date = `${dd} de ${mm} de ${yyyy}`;
+      console.log(date);
       this.editTask(
         task.id,
         task.title,
         !task.is_complete,
         this.user.id,
-        index,
+        date,
       );
     },
   },

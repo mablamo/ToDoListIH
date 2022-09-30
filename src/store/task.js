@@ -22,19 +22,21 @@ export default defineStore('tasks', {
         }]);
       this.tasks.push(createdTask[0]);
     },
-    async editTask(taskId, title, isComplete, userId) {
+    async editTask(taskId, title, isComplete, userId, completedDate) {
       const { data: editedTask } = await supabase
         .from('tasks')
         .update([{
           user_id: userId,
           title,
           is_complete: isComplete,
+          completed_on: completedDate,
         }])
         .match({ id: taskId });
       const taskIndex = this.tasks.findIndex((item) => item.id === taskId);
       this.tasks[taskIndex].title = editedTask[0].title;
       this.tasks.filter((elem) => elem.id === taskId)[0].title = editedTask[0].title;
       this.tasks[taskIndex].is_complete = isComplete;
+      this.tasks[taskIndex].completed_on = completedDate;
     },
     async deleteTask(taskId) {
       const { data, error } = await supabase

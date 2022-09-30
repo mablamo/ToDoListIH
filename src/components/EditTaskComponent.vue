@@ -42,7 +42,7 @@ export default {
         this.editTitle,
         task.is_complete,
         this.user.id,
-        this.editedIndex,
+        null,
       );
       this.editTitle = '';
       this.$emit('hideEdit');

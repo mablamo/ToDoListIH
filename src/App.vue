@@ -1,7 +1,9 @@
 <template>
   <nav v-if="user">
-    <img class="nav-logo" src='./assets/logo.png' alt="Logo_Dori">
-    <button class="btn btn-primary" @click="handleSignOut">SignOut</button></nav>
+    <img class="nav-logo" src='./assets/logo_sin.png' alt="Logo_Dori">
+    <button class="btn btn-primary" @click="handleSignOut">SignOut</button>
+  </nav>
+    <button @click="pruebas">Pruebas</button>
   <router-view />
 </template>
 
@@ -18,6 +20,8 @@ export default {
     ...mapActions(userStore, ['fetchUser', 'signOut']),
     handleSignOut() {
       this.signOut();
+    },
+    pruebas() {
     },
   },
   async created() {
