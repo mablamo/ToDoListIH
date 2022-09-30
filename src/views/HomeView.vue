@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="view">
     <button v-if="!addController && !editController"
     class="btn btn-primary" @click="openAddTask">Nueva Tarea</button>
     <add-task-component v-if="addController" @hideAdd="addController = false"></add-task-component>

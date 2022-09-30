@@ -18,7 +18,7 @@
           >Set your password
           <div class="col-sm-10">
             <input
-              type="email"
+              type="password"
               id="password"
               class="form-control"
               v-model="password"

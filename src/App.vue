@@ -55,6 +55,7 @@ export default {
 
 nav {
   padding: 30px;
+  background-color: burlywood;
 }
 
 nav a {
@@ -96,7 +97,10 @@ nav {
 
 body {
   background-color: rgb(69, 193, 224);
-  padding: 0 15px;
+}
+
+.view {
+  margin: 15px;
 }
 
 </style>

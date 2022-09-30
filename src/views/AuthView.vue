@@ -17,6 +17,7 @@
           name="btnradio"
           id="btnradio1"
           checked
+          required
           @click="logedUser"
       /></label>
       <label class="btn btn-outline-primary" for="btnradio2"
@@ -61,7 +62,7 @@ export default {
       if (this.password === this.confirmPassword) {
         this.signUp(this.email, this.password);
       } else {
-        console.log('password no coincide');
+        window.alert('La contraseña no coincide');
       }
     },
     unlogedUser() {
