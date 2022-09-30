@@ -78,10 +78,10 @@ export default {
     ...mapState(userStore, ['user']),
     ...mapState(tasksStore, ['tasks']),
     pendingTasks() {
-      return this.tasks.filter((elem) => !elem.is_complete);
+      return this.tasks.filter((elem) => !elem.chart).filter((elem) => !elem.is_complete);
     },
     completedTasks() {
-      return this.tasks.filter((elem) => elem.is_complete);
+      return this.tasks.filter((elem) => !elem.chart).filter((elem) => elem.is_complete);
     },
   },
   methods: {

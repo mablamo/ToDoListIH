@@ -36,7 +36,7 @@ export default {
   methods: {
     ...mapActions(tasksStore, ['addTask']),
     handleAddTask() {
-      this.addTask(this.title, this.user.id);
+      this.addTask(this.title, this.user.id, false);
       this.title = '';
       this.$emit('hideAdd');
     },

@@ -1,6 +1,8 @@
 <template>
   <nav v-if="user">
     <img class="nav-logo" src='./assets/logo_sin.png' alt="Logo_Dori">
+    <router-link to="/">Tareas</router-link>
+    <router-link to="/compra">Lista de la compra</router-link>
     <button class="btn btn-primary" @click="handleSignOut">SignOut</button>
   </nav>
     <button @click="pruebas">Pruebas</button>

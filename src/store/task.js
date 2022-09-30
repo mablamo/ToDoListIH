@@ -13,12 +13,13 @@ export default defineStore('tasks', {
         .order('id', { ascending: true });
       this.tasks = tasks;
     },
-    async addTask(title, userId) {
+    async addTask(title, userId, compra) {
       const { data: createdTask } = await supabase
         .from('tasks')
         .insert([{
           user_id: userId,
           title,
+          chart: compra,
         }]);
       this.tasks.push(createdTask[0]);
     },
