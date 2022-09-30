@@ -1,6 +1,6 @@
 <template>
 
-<h3>Compras pendientes...</h3>
+<h3>Enviar tarea</h3>
 <ul class="list-group">
   <li class="list-group-item d-flex justify-content-between align-items-start pending"
   v-for="(task) in listaCompra" :key="task.id">
@@ -20,7 +20,7 @@ import userStore from '@/store/user';
 import tasksStore from '@/store/task';
 
 export default {
-  name: 'CompraComponent',
+  name: 'SharedComponent',
   data() {
     return {
       title: '',

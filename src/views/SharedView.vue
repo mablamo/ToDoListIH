@@ -1,6 +1,6 @@
 <template>
 <div class="view">
-<button v-if="!addCompra"
+<!-- <button v-if="!addCompra"
     class="btn btn-primary" @click="openAddCompra">Nueva Compra</button>
     <label for="title">
     <input v-if="addCompra" type="text" id="title"
@@ -9,8 +9,8 @@
     <button v-if="addCompra"
     class="btn btn-primary" @click="handleAddCompra">Añadir</button>
     <button v-if="addCompra"
-    class="btn btn-primary cancel" @click="cancelAddCompra">Cancelar</button>
-<compra-component></compra-component>
+    class="btn btn-primary cancel" @click="cancelAddCompra">Cancelar</button> -->
+<shared-component></shared-component>
 </div>
 </template>
 
@@ -18,10 +18,10 @@
 import { mapState, mapActions } from 'pinia';
 import userStore from '@/store/user';
 import tasksStore from '@/store/task';
-import CompraComponent from '../components/CompraComponent.vue';
+import SharedComponent from '../components/SharedComponent.vue';
 
 export default {
-  name: 'CompraView',
+  name: 'SharedView',
   data() {
     return {
       title: '',
@@ -29,7 +29,7 @@ export default {
     };
   },
   components: {
-    CompraComponent,
+    SharedComponent,
   },
   computed: {
     ...mapState(userStore, ['user']),

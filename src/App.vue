@@ -3,6 +3,7 @@
     <img class="nav-logo" src='./assets/logo_sin.png' alt="Logo_Dori">
     <router-link to="/">Tareas</router-link>
     <router-link to="/compra">Lista de la compra</router-link>
+    <router-link to="/shared">Tareas compartidas</router-link>
     <button class="btn" id="signOutButton" @click="handleSignOut">Salir</button>
   </nav>
   <router-view />

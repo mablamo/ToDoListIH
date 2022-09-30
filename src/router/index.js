@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import AuthView from '../views/AuthView.vue';
 import CompraView from '../views/CompraView.vue';
+import SharedView from '../views/SharedView.vue';
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: '/compra',
     name: 'compra',
     component: CompraView,
+  },
+  {
+    path: '/shared',
+    name: 'shared',
+    component: SharedView,
   },
 ];
 
