@@ -6,7 +6,8 @@
     <input type="text" id="title" v-model="title" placeholder="Introduce tu nueva tarea">
     </label>
   <div v-if="esCompra" class="box">
-    <h4>Quieres agregar "{{ title }}" a la lista de la compra?</h4>
+    <h4>Quieres agregar "{{ this.title.replace('comprar ', '').replace('compra ', '') }}"
+       a la lista de la compra?</h4>
     <button class="btn btn-primary" @click="handleAddCompra" type="button">SI</button>
     <button class="btn btn-primary cancel" @click="handleAddTaskAnyway" type="button">
       NO, es una tarea</button><br>

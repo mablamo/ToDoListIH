@@ -120,12 +120,20 @@ export default {
   justify-self: flex-start;
 }
 
+h3 {
+  margin-top: 30px;
+}
+
 li.pending {
-  background-color: rgb(198, 231, 91);
+  background-color: rgb(188, 229, 246);
 }
 
 li.completed {
-  background-color: rgb(62, 239, 92);
+  background-color: rgb(144, 243, 216);
+}
+
+li.completed div.fw-bold {
+  text-decoration: line-through;
 }
 
 </style>

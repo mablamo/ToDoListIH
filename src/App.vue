@@ -3,9 +3,8 @@
     <img class="nav-logo" src='./assets/logo_sin.png' alt="Logo_Dori">
     <router-link to="/">Tareas</router-link>
     <router-link to="/compra">Lista de la compra</router-link>
-    <button class="btn btn-primary" @click="handleSignOut">SignOut</button>
+    <button class="btn" id="signOutButton" @click="handleSignOut">Salir</button>
   </nav>
-    <button @click="pruebas">Pruebas</button>
   <router-view />
 </template>
 
@@ -22,11 +21,6 @@ export default {
     ...mapActions(userStore, ['fetchUser', 'signOut']),
     handleSignOut() {
       this.signOut();
-    },
-    pruebas() {
-      const fuego = 'Esto es fuego';
-      console.log(fuego);
-      console.log(fuego.replace('fuegote', '').replace('fuego', ''));
     },
   },
   async created() {
@@ -55,7 +49,6 @@ export default {
 
 nav {
   padding: 30px;
-  background-color: burlywood;
 }
 
 nav a {
@@ -87,12 +80,15 @@ h3 {
 .nav-logo {
   width: 10%;
   height: 10%;
+  margin: 5px;
 }
 
 nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 0;
+  padding: 0;
 }
 
 body {
@@ -101,6 +97,19 @@ body {
 
 .view {
   margin: 15px;
+}
+
+#signOutButton {
+  border: 2px black;
+  background-color: rgb(100, 143, 171);
+  box-shadow:  5px 5px rgb(78, 87, 99);
+  border-radius: 10%;
+  font-weight: 600;
+}
+
+nav a.router-link-exact-active {
+    color: #5842b9;
+    font-size: 30px;
 }
 
 </style>

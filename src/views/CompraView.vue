@@ -1,6 +1,5 @@
 <template>
 <div class="view">
-<h3>Lista de la compra</h3>
 <button v-if="!addCompra"
     class="btn btn-primary" @click="openAddCompra">Nueva Compra</button>
     <label for="title">

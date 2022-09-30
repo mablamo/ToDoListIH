@@ -1,7 +1,7 @@
 <template>
 
-<h4>Compras pendientes...</h4>
-<ol class="list-group list-group-numbered">
+<h3>Compras pendientes...</h3>
+<ul class="list-group">
   <li class="list-group-item d-flex justify-content-between align-items-start pending"
   v-for="(task) in listaCompra" :key="task.id">
     <div class="ms-2 me-auto">
@@ -10,7 +10,7 @@
       <button class="badge bg-primary rounded-pill" @click="handleDeleteTask(task)">
       Comprado</button>
   </li>
-</ol>
+</ul>
 
 </template>
 
@@ -67,17 +67,7 @@ export default {
 </script>
 
 <style>
-.dropdown {
-  position: relative;
-  justify-self: flex-start;
+li {
+  text-align: center;
 }
-
-li.pending {
-  background-color: rgb(198, 231, 91);
-}
-
-li.completed {
-  background-color: rgb(62, 239, 92);
-}
-
 </style>

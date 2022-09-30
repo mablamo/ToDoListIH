@@ -1,8 +1,8 @@
 <template>
   <div class="position-absolute top-50 start-50 translate-middle auth">
-    <h1>Welcome to</h1>
+    <h1>Bienvenido a</h1>
     <img src='../assets/logo.png' alt="Logo_Dori">
-    <h2>don't forget anything!</h2>
+    <h2>¡no te olvides de nada!</h2>
 
     <div
       class="btn-group"
@@ -10,7 +10,7 @@
       aria-label="Basic radio toggle button group"
     >
       <label class="btn btn-outline-primary" for="btnradio1">
-        I'm in (I think so)
+        Ya tengo cuenta (creo)
         <input
           type="radio"
           class="btn-check"
@@ -21,7 +21,7 @@
           @click="logedUser"
       /></label>
       <label class="btn btn-outline-primary" for="btnradio2"
-        >Who are you?
+        >¿Quien eres? ¿Hola?
         <input type="radio" class="btn-check" name="btnradio" id="btnradio2" @click="unlogedUser"/>
       </label>
     </div>
