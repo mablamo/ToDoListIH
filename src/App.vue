@@ -24,6 +24,9 @@ export default {
       this.signOut();
     },
     pruebas() {
+      const fuego = 'Esto es fuego';
+      console.log(fuego);
+      console.log(fuego.replace('fuegote', '').replace('fuego', ''));
     },
   },
   async created() {

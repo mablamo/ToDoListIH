@@ -5,7 +5,14 @@
   <label for="title">
     <input type="text" id="title" v-model="title" placeholder="Introduce tu nueva tarea">
     </label>
-  <div class="box">
+  <div v-if="esCompra" class="box">
+    <h4>Quieres agregar "{{ title }}" a la lista de la compra?</h4>
+    <button class="btn btn-primary" @click="handleAddCompra" type="button">SI</button>
+    <button class="btn btn-primary cancel" @click="handleAddTaskAnyway" type="button">
+      NO, es una tarea</button><br>
+    <button class="btn btn-primary cancel" @click="handleCancel" type="button"> Cancelar</button>
+  </div>
+    <div v-if="!esCompra" class="box">
     <button class="btn btn-primary" @click="handleAddTask" type="button"> Añadir</button>
     <button class="btn btn-primary cancel" @click="handleCancel" type="button"> Cancelar</button>
   </div>
@@ -23,6 +30,7 @@ export default {
   data() {
     return {
       title: '',
+      esCompra: false,
     };
   },
   props: {
@@ -36,12 +44,29 @@ export default {
   methods: {
     ...mapActions(tasksStore, ['addTask']),
     handleAddTask() {
+      if (this.title.includes('compra')) {
+        this.esCompra = true;
+      } else {
+        this.addTask(this.title, this.user.id, false);
+        this.title = '';
+        this.$emit('hideAdd');
+      }
+    },
+    handleAddTaskAnyway() {
       this.addTask(this.title, this.user.id, false);
       this.title = '';
+      this.esCompra = false;
       this.$emit('hideAdd');
     },
     handleCancel() {
       this.title = '';
+      this.esCompra = false;
+      this.$emit('hideAdd');
+    },
+    handleAddCompra() {
+      this.addTask(this.title.replace('comprar ', '').replace('compra ', ''), this.user.id, true);
+      this.title = '';
+      this.esCompra = false;
       this.$emit('hideAdd');
     },
   },
