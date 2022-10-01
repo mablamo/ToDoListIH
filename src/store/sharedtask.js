@@ -30,7 +30,7 @@ export default defineStore('sharedTasks', {
         .delete()
         .match({ id: sharedTaskId });
       const taskIndex = this.sharedTasks.findIndex((item) => item.id === sharedTaskId);
-      this.tasks.splice(taskIndex, 1);
+      this.sharedTasks.splice(taskIndex, 1);
       console.log(data, error);
     },
   },

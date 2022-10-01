@@ -14,13 +14,13 @@ export default defineStore('users', {
       this.users = users;
     },
     async addUser(user, userId) {
-      const { error } = await supabase
+      const { data: createdUser } = await supabase
         .from('dbUsers')
         .insert([{
           user_id: userId,
           user_mail: user,
         }]);
-      console.log(error);
+      this.users.push(createdUser[0]);
     },
   },
 });

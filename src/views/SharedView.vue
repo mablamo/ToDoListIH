@@ -1,16 +1,7 @@
 <template>
 <div class="view">
-<!-- <button v-if="!addCompra"
-    class="btn btn-primary" @click="openAddCompra">Nueva Compra</button>
-    <label for="title">
-    <input v-if="addCompra" type="text" id="title"
-    v-model="title" placeholder="¿Qué quieres comprar?">
-    </label><br>
-    <button v-if="addCompra"
-    class="btn btn-primary" @click="handleAddCompra">Añadir</button>
-    <button v-if="addCompra"
-    class="btn btn-primary cancel" @click="cancelAddCompra">Cancelar</button> -->
 <shared-component></shared-component>
+<my-shared-tasks-component></my-shared-tasks-component>
 </div>
 </template>
 
@@ -19,6 +10,7 @@ import { mapState, mapActions } from 'pinia';
 import userStore from '@/store/user';
 import tasksStore from '@/store/task';
 import SharedComponent from '../components/SharedComponent.vue';
+import MySharedTasksComponent from '../components/MySharedTasksComponent.vue';
 
 export default {
   name: 'SharedView',
@@ -30,6 +22,7 @@ export default {
   },
   components: {
     SharedComponent,
+    MySharedTasksComponent,
   },
   computed: {
     ...mapState(userStore, ['user']),

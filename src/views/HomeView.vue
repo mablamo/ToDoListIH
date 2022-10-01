@@ -12,6 +12,8 @@
 import { mapState, mapActions } from 'pinia';
 import userStore from '@/store/user';
 import tasksStore from '@/store/task';
+import sharedTasksStore from '@/store/sharedtask';
+import usersStore from '@/store/users';
 import TasksComponent from '../components/TasksComponent.vue';
 import AddTaskComponent from '../components/AddTaskComponent.vue';
 
@@ -30,10 +32,14 @@ export default {
   },
   computed: {
     ...mapState(userStore, ['user']),
+    ...mapState(usersStore, ['users']),
     ...mapState(tasksStore, ['tasks']),
+    ...mapState(sharedTasksStore, ['sharedTasks']),
   },
   methods: {
     ...mapActions(tasksStore, ['fetchTasks', 'addTask']),
+    ...mapActions(usersStore, ['fetchUsers', 'addUser']),
+    ...mapActions(sharedTasksStore, ['fetchSharedTasks']),
     handleAddTask() {
       this.addTask(this.title, this.user.id);
     },
@@ -43,11 +49,18 @@ export default {
   },
   created() {
     this.fetchTasks();
+    this.fetchUsers();
+    this.fetchSharedTasks();
   },
   watch: {
     user() {
       if (this.user === null) {
         this.$router.push({ path: '/auth' });
+      }
+    },
+    users() {
+      if (this.users.findIndex((item) => item.user_id === this.user.id) === -1) {
+        this.addUser(this.user.email, this.user.id);
       }
     },
   },
