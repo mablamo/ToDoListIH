@@ -14,14 +14,14 @@ export default defineStore('sharedTasks', {
       this.sharedTasks = sharedTasks;
     },
     async addSharedTask(title, userId, compra, targetId) {
-      const { data: sharedTask } = await supabase
-        .from('sharedTask')
-        .insert([{
+      const { data: sharedTask } = await supabase.from('sharedTask').insert([
+        {
           user_id: userId,
           title,
           chart: compra,
           user_target: targetId,
-        }]);
+        },
+      ]);
       this.sharedTasks.push(sharedTask[0]);
     },
     async deleteSharedTask(sharedTaskId) {

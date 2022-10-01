@@ -1,17 +1,29 @@
 <template>
-<div class="view">
-<button v-if="!addCompra"
-    class="btn btn-primary" @click="openAddCompra">Nueva Compra</button>
+  <div class="view">
+    <button v-if="!addCompra" class="btn btn-primary" @click="openAddCompra">
+      Nueva Compra
+    </button>
     <label for="title">
-    <input v-if="addCompra" type="text" id="title"
-    v-model="title" placeholder="¿Qué quieres comprar?">
-    </label><br>
-    <button v-if="addCompra"
-    class="btn btn-primary" @click="handleAddCompra">Añadir</button>
-    <button v-if="addCompra"
-    class="btn btn-primary cancel" @click="cancelAddCompra">Cancelar</button>
-<compra-component></compra-component>
-</div>
+      <input
+        v-if="addCompra"
+        type="text"
+        id="title"
+        v-model="title"
+        placeholder="¿Qué quieres comprar?"
+      /> </label
+    ><br />
+    <button v-if="addCompra" class="btn btn-primary" @click="handleAddCompra">
+      Añadir
+    </button>
+    <button
+      v-if="addCompra"
+      class="btn btn-primary cancel"
+      @click="cancelAddCompra"
+    >
+      Cancelar
+    </button>
+    <compra-component></compra-component>
+  </div>
 </template>
 
 <script>
@@ -36,7 +48,7 @@ export default {
     ...mapState(tasksStore, ['tasks']),
   },
   methods: {
-    ...mapActions(tasksStore, ['fetchTasks', 'addTask']),
+    ...mapActions(tasksStore, ['addTask']),
     handleAddCompra() {
       this.addTask(this.title, this.user.id, true);
       this.title = '';

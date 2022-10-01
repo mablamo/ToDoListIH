@@ -1,7 +1,7 @@
 <template>
   <div class="position-absolute top-50 start-50 translate-middle auth">
     <h1>Bienvenido a</h1>
-    <img src='../assets/logo.png' alt="Logo_Dori">
+    <img src="../assets/logo.png" alt="Logo_Dori" />
     <h2>¡no te olvides de nada!</h2>
 
     <div
@@ -22,12 +22,24 @@
       /></label>
       <label class="btn btn-outline-primary" for="btnradio2"
         >¿Quien eres? ¿Hola?
-        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" @click="unlogedUser"/>
+        <input
+          type="radio"
+          class="btn-check"
+          name="btnradio"
+          id="btnradio2"
+          @click="unlogedUser"
+        />
       </label>
     </div>
 
-    <sign-in-component class="auth-component" v-show="loged"></sign-in-component>
-    <sign-up-component class="auth-component" v-show="!loged"></sign-up-component>
+    <sign-in-component
+      class="auth-component"
+      v-show="loged"
+    ></sign-in-component>
+    <sign-up-component
+      class="auth-component"
+      v-show="!loged"
+    ></sign-up-component>
   </div>
 </template>
 
@@ -100,5 +112,4 @@ img {
 h2 {
   margin-bottom: 50px;
 }
-
 </style>

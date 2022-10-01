@@ -1,6 +1,6 @@
 <template>
   <nav v-if="user">
-    <img class="nav-logo" src='./assets/logo_sin.png' alt="Logo_Dori">
+    <img class="nav-logo" src="./assets/logo_sin.png" alt="Logo_Dori" />
     <router-link to="/">Tareas</router-link>
     <router-link to="/compra">Lista de la compra</router-link>
     <router-link to="/shared">Tareas compartidas</router-link>
@@ -62,8 +62,8 @@ nav a.router-link-exact-active {
 }
 
 button.cancel {
-    background-color: rgb(175, 8, 8);
-    --bs-btn-hover-bg: #700f06;
+  background-color: rgb(175, 8, 8);
+  --bs-btn-hover-bg: #700f06;
 }
 
 button {
@@ -103,14 +103,13 @@ body {
 #signOutButton {
   border: 2px black;
   background-color: rgb(100, 143, 171);
-  box-shadow:  5px 5px rgb(78, 87, 99);
+  box-shadow: 5px 5px rgb(78, 87, 99);
   border-radius: 10%;
   font-weight: 600;
 }
 
 nav a.router-link-exact-active {
-    color: #5842b9;
-    font-size: 30px;
+  color: #5842b9;
+  font-size: 30px;
 }
-
 </style>

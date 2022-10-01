@@ -77,13 +77,13 @@ export default {
 
 <style>
 @media (min-width: 576px) {
-.col-sm-2 {
+  .col-sm-2 {
     width: 100%;
-}
+  }
 }
 @media (min-width: 576px) {
-.col-sm-10 {
+  .col-sm-10 {
     width: 100%;
-}
+  }
 }
 </style>

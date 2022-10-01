@@ -1,8 +1,8 @@
 <template>
-<div class="view">
-<shared-component></shared-component>
-<my-shared-tasks-component></my-shared-tasks-component>
-</div>
+  <div class="view">
+    <shared-component></shared-component>
+    <my-shared-tasks-component></my-shared-tasks-component>
+  </div>
 </template>
 
 <script>
@@ -29,7 +29,7 @@ export default {
     ...mapState(tasksStore, ['tasks']),
   },
   methods: {
-    ...mapActions(tasksStore, ['fetchTasks', 'addTask']),
+    ...mapActions(tasksStore, ['addTask']),
     handleAddCompra() {
       this.addTask(this.title, this.user.id, true);
       this.title = '';

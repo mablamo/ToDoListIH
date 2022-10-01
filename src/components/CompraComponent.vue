@@ -1,17 +1,28 @@
 <template>
-
-<h3>Compras pendientes...</h3>
-<ul class="list-group">
-  <li class="list-group-item d-flex justify-content-between align-items-start pending"
-  v-for="(task) in listaCompra" :key="task.id">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">{{ task.title }}</div>
-    </div>
-      <button class="badge bg-primary rounded-pill" @click="handleDeleteTask(task)">
-      Comprado</button>
-  </li>
-</ul>
-
+  <h3>Compras pendientes...</h3>
+  <ul class="list-group">
+    <li
+      class="
+        list-group-item
+        d-flex
+        justify-content-between
+        align-items-start
+        pending
+      "
+      v-for="task in listaCompra"
+      :key="task.id"
+    >
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">{{ task.title }}</div>
+      </div>
+      <button
+        class="badge bg-primary rounded-pill"
+        @click="handleDeleteTask(task)"
+      >
+        Comprado
+      </button>
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -54,13 +65,7 @@ export default {
       const yyyy = Date().substring(11, 15);
       const date = `${dd} de ${mm} de ${yyyy}`;
       console.log(date);
-      this.editTask(
-        task.id,
-        task.title,
-        !task.is_complete,
-        this.user.id,
-        date,
-      );
+      this.editTask(task.id, task.title, !task.is_complete, this.user.id, date);
     },
   },
 };

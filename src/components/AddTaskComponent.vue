@@ -1,24 +1,51 @@
 <template>
-
-<h2>Añadir tarea</h2>
-<div class="card">
-  <label for="title">
-    <input type="text" id="title" v-model="title" placeholder="Introduce tu nueva tarea">
+  <h2>Añadir tarea</h2>
+  <div class="card">
+    <label for="title">
+      <input
+        type="text"
+        id="title"
+        v-model="title"
+        placeholder="Introduce tu nueva tarea"
+      />
     </label>
-  <div v-if="esCompra" class="box">
-    <h4>Quieres agregar "{{ this.title.replace('comprar ', '').replace('compra ', '') }}"
-       a la lista de la compra?</h4>
-    <button class="btn btn-primary" @click="handleAddCompra" type="button">SI</button>
-    <button class="btn btn-primary cancel" @click="handleAddTaskAnyway" type="button">
-      NO, es una tarea</button><br>
-    <button class="btn btn-primary cancel" @click="handleCancel" type="button"> Cancelar</button>
-  </div>
+    <div v-if="esCompra" class="box">
+      <h4>
+        Quieres agregar "{{
+          this.title.replace("comprar ", "").replace("compra ", "")
+        }}" a la lista de la compra?
+      </h4>
+      <button class="btn btn-primary" @click="handleAddCompra" type="button">
+        SI
+      </button>
+      <button
+        class="btn btn-primary cancel"
+        @click="handleAddTaskAnyway"
+        type="button"
+      >
+        NO, es una tarea</button
+      ><br />
+      <button
+        class="btn btn-primary cancel"
+        @click="handleCancel"
+        type="button"
+      >
+        Cancelar
+      </button>
+    </div>
     <div v-if="!esCompra" class="box">
-    <button class="btn btn-primary" @click="handleAddTask" type="button"> Añadir</button>
-    <button class="btn btn-primary cancel" @click="handleCancel" type="button"> Cancelar</button>
+      <button class="btn btn-primary" @click="handleAddTask" type="button">
+        Añadir
+      </button>
+      <button
+        class="btn btn-primary cancel"
+        @click="handleCancel"
+        type="button"
+      >
+        Cancelar
+      </button>
+    </div>
   </div>
-</div>
-
 </template>
 
 <script>
@@ -65,7 +92,11 @@ export default {
       this.$emit('hideAdd');
     },
     handleAddCompra() {
-      this.addTask(this.title.replace('comprar ', '').replace('compra ', ''), this.user.id, true);
+      this.addTask(
+        this.title.replace('comprar ', '').replace('compra ', ''),
+        this.user.id,
+        true,
+      );
       this.title = '';
       this.esCompra = false;
       this.$emit('hideAdd');

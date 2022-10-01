@@ -1,9 +1,20 @@
 <template>
   <div class="view">
-    <button v-if="!addController && !editController"
-    class="btn btn-primary" @click="openAddTask">Nueva Tarea</button>
-    <add-task-component v-if="addController" @hideAdd="addController = false"></add-task-component>
-    <tasks-component v-if="!addController" @hideAddButton="editController = !editController">
+    <button
+      v-if="!addController && !editController"
+      class="btn btn-primary"
+      @click="openAddTask"
+    >
+      Nueva Tarea
+    </button>
+    <add-task-component
+      v-if="addController"
+      @hideAdd="addController = false"
+    ></add-task-component>
+    <tasks-component
+      v-if="!addController"
+      @hideAddButton="editController = !editController"
+    >
     </tasks-component>
   </div>
 </template>
@@ -59,7 +70,9 @@ export default {
       }
     },
     users() {
-      if (this.users.findIndex((item) => item.user_id === this.user.id) === -1) {
+      if (
+        this.users.findIndex((item) => item.user_id === this.user.id) === -1
+      ) {
         this.addUser(this.user.email, this.user.id);
       }
     },
